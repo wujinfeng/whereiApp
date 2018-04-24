@@ -1,0 +1,17 @@
+/* pages/map/index.wxss */
+
+.page-section-gap {
+  box-sizing: border-box;
+  padding: 0rpx;
+}
+.map{
+  width: 100%; height: 400px;
+}
+
+.page-body-button {
+  margin-bottom: 30rpx;
+}
+.refreshBtn {
+  margin: 30rpx auto;
+  width:150px;
+}
