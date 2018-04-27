@@ -86,6 +86,27 @@ class User {
     })
   }
 
+  static location(params) {
+    return new Promise((resolve, reject) => {      
+      wx.request({
+        url: config.LOCATION_URL,
+        method: 'POST',
+        dataType: 'json',
+        data: params,
+        success: function (res) {
+          if (res.statusCode === 200 && res.data.code === 200) {
+            resolve('ok')
+          } else {
+            reject(res.data.msg)
+          }
+        },
+        fail: function () {
+          reject('请求失败')
+        },
+      })
+    })
+  }
+
 };
 
 module.exports = User;  

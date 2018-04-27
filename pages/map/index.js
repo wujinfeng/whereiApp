@@ -1,5 +1,6 @@
 // pages/map/index.js
 let config = require('../../config');
+let user = require('../../utils/user.js')
 const app = getApp()
 Page({
 
@@ -7,12 +8,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hasAppGlobalData: false,
     userInfo: {},
     loginInfo: {},
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     latitude: 0,
     longitude: 0,
+    fromOpenId: '',
     markers: []
   },
 
@@ -21,12 +22,13 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    that.setData({ fromOpenId: '' })
     let share = options.share
-    let fromName = options.fromName
     console.log('share:', share)
     if(share){
+      that.setData({ fromOpenId: options.fromOpenId })
       wx.showToast({
-        title: '分享来自:' + fromName,
+        title: '分享来自:' + options.fromName,
         icon: 'none',
         duration: 4000
       })
@@ -38,24 +40,7 @@ Page({
    */
   onReady: function (e) {
     this.mapCtx = wx.createMapContext('myMap')
-
-    console.log('globalData.userInfo:', app.globalData.userInfo)
-    console.log('globalData.loginInfo:', app.globalData.loginInfo)
-    
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
-
-    if (app.globalData.loginInfo) {
-      this.setData({
-        loginInfo: app.globalData.loginInfo
-      })
-    }
-
-    this.myLocation()
-    this.getAppGlobalData()
+    this.myLocation()    
   },
   
   // 将地图中心移动到当前定位点，需要配合map组件的show-location使用
@@ -79,13 +64,40 @@ Page({
           name: '我的位置'
         }]
         that.setData({ latitude: latitude, longitude: longitude, markers: markers })
+        user.login()
+          .then(r => {
+            console.log('login:', r)
+            app.globalData.loginInfo = r;
+            return user.getUserInfo()
+          })
+          .then(r => {
+            console.log('userinfo:', r)
+            app.globalData.userInfo = r;
+            let nickName = app.globalData.userInfo.nickName;
+            let openId = app.globalData.loginInfo.openid;
+            return user.addUser(openId, nickName)
+          }).then((d) => {
+             console.log('addUser:', d)
+            let params = {
+              fromOpenId : that.data.fromOpenId,
+              openId: app.globalData.loginInfo.openid,
+              nickName: app.globalData.userInfo.nickName,
+              coordinate: latitude + ',' + longitude
+            }
+            if(!params.fromOpenId){
+              return;
+            }
+            return user.location(params)
+          }).then((d)=>{
+             console.log('addUserLocation:', d)
+          })
+          .catch(e => {
+            console.log(e);
+          })
       }
     })
   },
-
-  getAppGlobalData: function(){
-
-  },
+  
   /**
    * 生命周期函数--监听页面显示
    */
@@ -131,9 +143,10 @@ Page({
       console.log(res.target)
       console.log('button')
     }
+
     return {
       title: '我在哪',
-      path: '/pages/map/index?share=2&fromName=' + app.globalData.userInfo.nickName,
+      path: '/pages/map/index?share=2&fromName=' + app.globalData.userInfo.nickName + '&fromOpenId=' + app.globalData.loginInfo.openid,
       imageUrl:'/static/image/share.png',
       success: function (res) {
         // 转发成功
