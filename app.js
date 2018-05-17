@@ -7,7 +7,7 @@ App({
       
   },
   globalData: {
-    userInfo: null,
-    loginInfo: null
+    userInfo: {},
+    loginInfo: {}
   }
 })

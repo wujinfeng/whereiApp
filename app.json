@@ -1,12 +1,28 @@
 {
   "pages":[
-    "pages/map/index",
-    "pages/index/index"  
+    "pages/index/index",
+    "pages/user/index",
+    "pages/map/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "我在哪",
+    "navigationBarTitleText": "吃什么饭",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#00dd00",
+    "backgroundColor": "#eee",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "抽取"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "我的"
+      }
+    ]
   }
 }

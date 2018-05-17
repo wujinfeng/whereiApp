@@ -1,14 +1,19 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">我的头像和昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <button type="primary" class='locationBtn'  bindtap="clickMyLocaBtn"> 我的位置 </button>
-    </block>
+<view class="page">
+  <view class="page__bd">
+    <view class="menu">     
+      <view wx:if="{{ !myMenu }}" class='tip'> 点击下面按钮抽取 </view>
+      <view wx:elif="{{ !!myMenu }}">
+        <text class="name">{{myMenu}}</text>
+        <button class="weui-btn mini-btn" type="default" bindtap="">烹饪方法</button>
+      </view>
+      <view wx:else> 3 </view>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+
+  <view class="page__bd userinfo">
+    <open-data type="userNickName" lang="zh_CN" ></open-data>
+    <button class="weui-btn" type="primary" bindtap="clickWhatBtn"> 吃啥？ </button>
   </view>
+
 </view>

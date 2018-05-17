@@ -26,7 +26,7 @@ class User {
             }
           },
           fail: function () {
-            reject('请求失败，请重试')
+            reject('登录请求失败，请重试')
           },
         })
       },
@@ -34,35 +34,6 @@ class User {
         reject(res)
       }
     }));
-  }
-
-  /** 
-   * 获取用户信息 
-   * @return {Promise}  
-   */
-  static getUserInfo() {
-    return new Promise((resolve, reject) => {
-      wx.getSetting({
-        success: res => {
-          if (res.authSetting['scope.userInfo']) {
-            // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-            wx.getUserInfo({
-              success: res => {
-                resolve(res.userInfo)
-              },
-              fail: ()=> {
-                reject('请求失败，请重试')
-              },
-            })
-          }else{
-            reject('你未授权，不能获取头像昵称')
-          }
-        },
-        fail: () => {
-          reject('请求失败，请重试!')
-        },
-      })
-    });
   }
 
   static addUser(openId, nickName) {
@@ -76,11 +47,12 @@ class User {
           if (res.statusCode === 200 && res.data.code === 200) {
             resolve('ok')           
           } else {
-            reject(res.data.msg)
+            resolve()
+            console.log(res.data.msg)
           }
         },
         fail: function () {
-          reject('请求失败')
+          console.log('添加use请求失败')
         },
       })
     })
@@ -101,7 +73,7 @@ class User {
           }
         },
         fail: function () {
-          reject('请求失败')
+          reject('location请求失败')
         },
       })
     })

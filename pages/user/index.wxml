@@ -1,0 +1,25 @@
+<!--pages/user/index.wxml-->
+<view class="page">
+    <view class="page__hd"> 
+      <view class="share">
+        <input class='input' bindinput="bindKeyInput" placeholder="好友名称"/>
+        <button  class='button' open-type="share">转发给好友</button>
+      </view>
+      <view class='tip-help'>随便给好友写个名称,就可以查看到好友是否打开</view>
+    </view>
+    <view class="page__hd">    
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__hd">我的分享</view>
+            <view class="weui-panel__bd">
+            <block wx:for="{{shareData}}" wx:key="{{id}}">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.nickName}}</view>
+                    <view class="weui-media-box__desc">{{item.time}}
+                          <text bindtap="clickMyLocaBtn" data-coordinate='{{item.coordinate}}'>位置</text>
+                    </view>
+                </view>
+            </block>    
+            </view>
+      </view>
+    </view>
+</view>

@@ -1,0 +1,18 @@
+/* pages/user/index.wxss */
+.tip-help{
+  font-size: 12px;
+  text-indent: 5px;
+  color:#aaa;
+}
+.share .input{
+  height: 50px;
+  display: inline-block;
+  width:55%;
+  padding-left:5%;
+  border-bottom:1px solid #999;
+}
+.share .button{
+  height: 50px;
+  display: inline-block;
+  width:38%;
+}
