@@ -2,12 +2,10 @@
 let config = require('./config');
 
 App({
-  onLaunch: function () {
-    let that = this;
-      
-  },
-  globalData: {
-    userInfo: {},
-    loginInfo: {}
-  }
+    onLaunch: function () {
+    },
+    globalData: {
+        userInfo: {},
+        loginInfo: {}
+    }
 })
