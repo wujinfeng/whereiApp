@@ -1,0 +1,30 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">{{menuInfo.name}}</view>
+        <view class="page__desc"></view>
+    </view>
+    <view class="page__bd">
+
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">菜谱介绍</view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">菜谱</view>
+                    <view class="weui-media-box__desc desc"><text>{{menuInfo.content}}</text></view>
+                </view>
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">功效</view>
+                    <view class="weui-media-box__desc desc"><text>{{menuInfo.good}}</text></view>
+                </view>
+            </view>
+            <!-- <view class="weui-panel__ft">
+                <view class="weui-cell weui-cell_access weui-cell_link">
+                    <view class="weui-cell__bd">查看更多</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>
+            </view> -->
+        </view>
+
+
+    </view>
+</view>

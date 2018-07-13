@@ -2,16 +2,17 @@
 //获取应用实例
 let config = require('../../config');
 let user = require('../../utils/user.js')
+let Menu = require('../../utils/menu.js')
 let util = require('../../utils/util.js')
 const app = getApp()
-
+let currentMenu = null; // 当前抽取的菜单对象
 Page({
     data: {
         friendName: '',
         userInfo: {},
         loginInfo: {},
         fromOpenId: '',
-        menu: ['西红柿炒蛋', '鱼香茄子', '宫保鸡丁', '青椒肉丝', '牛肉面', '木须肉', '东坡肉', '大盘鸡', '麻婆豆腐', '红烧鱼'],
+        menu: [],
         myMenu: '',
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -21,11 +22,14 @@ Page({
         let that = this;
         that.setData({myMenu: '...'})
         wx.showLoading({title: '加载中',})
-        let random = Math.floor(Math.random() * 10)
+        let random = Math.floor(Math.random() * that.data.menu.length)
         setTimeout(function () {
             wx.hideLoading()
-            that.setData({myMenu: that.data.menu[random]})
-        }, 900)
+            currentMenu = that.data.menu[random]
+            that.setData({
+                myMenu: currentMenu.name
+            })
+        }, 500)
     },
     onLoad: function (options) {
         let that = this
@@ -37,6 +41,7 @@ Page({
             that.setData({fromOpenId: options.fromOpenId || '', friendName: options.friendName || ''})
         }
         this.myLocation()
+        this.getAllMenu()
     },
     myLocation: function () {
         let that = this
@@ -75,6 +80,22 @@ Page({
         })
     },
 
+    getAllMenu: function () {
+        let that = this;
+        Menu.getAllMenu()
+            .then((d) => {
+                console.log('getAllMenu',d);
+                that.setData({menu: d})
+            }).catch(e => {
+            console.log(e)
+        })
+    },
+
+    getMenuInfo: function () {
+        wx.navigateTo({
+            url: '/pages/menu/info?id='+currentMenu.id
+        })
+    },
     /**
      * 用户点击右上角分享
      */

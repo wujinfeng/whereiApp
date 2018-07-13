@@ -128,13 +128,17 @@ Page({
                     success: function (res) {
                         console.log('结果', res);
                         if (res.statusCode === 200 && res.data.code === 200) {
-                            wx.showModal({title: '分享成功', content: res.data.msg})
+                            wx.showToast({
+                                title: '分享成功',
+                                icon: 'success',
+                                duration: 2000
+                            })
                         } else {
-                            wx.showModal({title: '分享失败', content: res.data.msg})
+                            // wx.showModal({title: '分享失败', content: res.data.msg})
                         }
                     },
                     fail: function () {
-                        wx.showModal({title: '提示', content: '请求失败，请重试！'})
+                        //wx.showModal({title: '提示', content: '请求失败，请重试！'})
                     },
                 })
             },

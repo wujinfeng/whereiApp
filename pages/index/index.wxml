@@ -1,18 +1,20 @@
 <!--index.wxml-->
 <view class="page">
   <view class="page__bd">
-    <view class="menu">     
+    <view class="menu">
       <view wx:if="{{ !myMenu }}" class='tip'> 点击下面按钮抽取 </view>
       <view wx:elif="{{ !!myMenu }}">
         <text class="name">{{myMenu}}</text>
-        <!-- <button class="weui-btn mini-btn" type="default" bindtap="">烹饪方法</button> -->
+        <button class="weui-btn mini-btn" type="default" bindtap="getMenuInfo">烹饪方法</button>
       </view>
       <view wx:else> 3 </view>
     </view>
   </view>
 
-  <view class="page__bd userinfo">    
+  <view class="page__bd userinfo">
     <button class="weui-btn" type="primary" bindtap="clickWhatBtn"> 吃啥？ </button>
   </view>
-
+  <view class="page__bd feedback">
+    <button open-type="feedback" size="mini">反馈</button>
+  </view>
 </view>

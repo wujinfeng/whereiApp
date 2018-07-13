@@ -1,0 +1,4 @@
+/* pages/menu/info.wxss */
+.weui-media-box__desc{
+  -webkit-line-clamp: 0;
+}

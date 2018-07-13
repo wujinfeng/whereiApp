@@ -18,3 +18,10 @@
   color:#666; 
   margin: 0 auto;
 }
+
+.feedback{
+  position: absolute;
+  /* width:100px; */
+  bottom:2px;
+  right:10px;
+}

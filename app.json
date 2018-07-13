@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/user/index",
+    "pages/menu/info",
     "pages/map/index"
   ],
   "window":{
