@@ -1,29 +1,36 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/user/index",
     "pages/menu/info",
     "pages/map/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "吃什么饭",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#000",
     "selectedColor": "#00dd00",
     "backgroundColor": "#eee",
+    "borderStyle": "black",
+    "position": "bottom",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "抽取"
+        "text": "抽取",
+        "iconPath": "/static/image/home.png",
+        "selectedIconPath": "/static/image/homeselected.png"
       },
       {
         "pagePath": "pages/user/index",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "/static/image/mine.png",
+        "selectedIconPath": "/static/image/mineselected.png"
       }
     ]
-  }
+  },
+  "debug": true
 }

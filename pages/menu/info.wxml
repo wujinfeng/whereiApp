@@ -10,11 +10,11 @@
             <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_text">
                     <view class="weui-media-box__title weui-media-box__title_in-text">菜谱</view>
-                    <view class="weui-media-box__desc desc"><text>{{menuInfo.content}}</text></view>
+                    <view class="desc"><text>{{menuInfo.content}}</text></view>
                 </view>
                 <view class="weui-media-box weui-media-box_text">
                     <view class="weui-media-box__title weui-media-box__title_in-text">功效</view>
-                    <view class="weui-media-box__desc" style="-webkit-line-clamp: 0!important;"  ><text>{{menuInfo.good}}</text></view>
+                    <view class="desc"><text>{{menuInfo.good}}</text></view>
                 </view>
             </view>
             <!-- <view class="weui-panel__ft">

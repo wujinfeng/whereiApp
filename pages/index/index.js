@@ -22,6 +22,14 @@ Page({
         let that = this;
         that.setData({myMenu: '...'})
         wx.showLoading({title: '加载中',})
+        if(that.data.menu.length === 0){
+            wx.showToast({
+                title: '网络繁忙，请稍后重试！',
+                icon: 'none',
+                duration: 2000
+            })
+            return;
+        }
         let random = Math.floor(Math.random() * that.data.menu.length)
         setTimeout(function () {
             wx.hideLoading()
@@ -84,7 +92,7 @@ Page({
         let that = this;
         Menu.getAllMenu()
             .then((d) => {
-                console.log('getAllMenu',d);
+                console.log('getAllMenu', d);
                 that.setData({menu: d})
             }).catch(e => {
             console.log(e)
@@ -92,9 +100,11 @@ Page({
     },
 
     getMenuInfo: function () {
-        wx.navigateTo({
-            url: '/pages/menu/info?id='+currentMenu.id
-        })
+        if(currentMenu.id){
+            wx.navigateTo({
+                url: '/pages/menu/info?id=' + currentMenu.id
+            })
+        }
     },
     /**
      * 用户点击右上角分享
@@ -122,13 +132,17 @@ Page({
                     success: function (res) {
                         console.log('结果', res);
                         if (res.statusCode === 200 && res.data.code === 200) {
-                            wx.showModal({title: '分享成功', content: res.data.msg})
+                            wx.showToast({
+                                title: '分享成功',
+                                icon: 'success',
+                                duration: 2000
+                            })
                         } else {
-                            wx.showModal({title: '分享失败', content: res.data.msg})
+                           // wx.showModal({title: '分享失败', content: res.data.msg})
                         }
                     },
                     fail: function () {
-                        wx.showModal({title: '提示', content: '请求失败，请重试！'})
+                        // wx.showModal({title: '提示', content: '请求失败，请重试！'})
                     },
                 })
             },

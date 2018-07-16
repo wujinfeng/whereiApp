@@ -5,7 +5,7 @@
       <view wx:if="{{ !myMenu }}" class='tip'> 点击下面按钮抽取 </view>
       <view wx:elif="{{ !!myMenu }}">
         <text class="name">{{myMenu}}</text>
-        <button class="weui-btn mini-btn" type="default" bindtap="getMenuInfo">烹饪方法</button>
+        <button class="weui-btn mini-btn lookBtn" type="default" bindtap="getMenuInfo">烹饪方法</button>
       </view>
       <view wx:else> 3 </view>
     </view>

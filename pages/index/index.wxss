@@ -25,3 +25,7 @@
   bottom:2px;
   right:10px;
 }
+
+.lookBtn{
+  width:150px;
+}
