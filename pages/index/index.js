@@ -22,17 +22,17 @@ Page({
         let that = this;
         that.setData({myMenu: '...'})
         wx.showLoading({title: '加载中',})
-        if(that.data.menu.length === 0){
-            wx.showToast({
-                title: '网络繁忙，请稍后重试！',
-                icon: 'none',
-                duration: 2000
-            })
-            return;
-        }
         let random = Math.floor(Math.random() * that.data.menu.length)
         setTimeout(function () {
             wx.hideLoading()
+            if (that.data.menu.length === 0) {
+                wx.showToast({
+                    title: '网络繁忙，请稍后重试！',
+                    icon: 'none',
+                    duration: 2500
+                })
+                return;
+            }
             currentMenu = that.data.menu[random]
             that.setData({
                 myMenu: currentMenu.name
@@ -48,11 +48,15 @@ Page({
         if (share) {
             that.setData({fromOpenId: options.fromOpenId || '', friendName: options.friendName || ''})
         }
-        this.myLocation()
         this.getAllMenu()
+        this.myLocation()
     },
     myLocation: function () {
         let that = this
+        wx.showLoading({
+            title: '加载中...',
+            mask: true,
+        });
         wx.getLocation({
             type: 'gcj02',
             success: function (res) {
@@ -75,14 +79,22 @@ Page({
                             coordinate: latitude + ',' + longitude
                         }
                         if (!params.fromOpenId || (params.fromOpenId === params.openId)) {
+                            wx.hideLoading();
                             return;
                         }
                         return user.location(params)
                     }).then((d) => {
-                    console.log('addUserLoca', d)
+                    wx.hideLoading();
+                    console.error('addUserLoca', d)
                 })
                     .catch(e => {
-                        console.log(e);
+                        console.error(e);
+                        wx.hideLoading();
+                        wx.showToast({
+                            title: '网络繁忙，请稍后重试！',
+                            icon: 'none',
+                            duration: 2500
+                        })
                     })
             }
         })
@@ -93,14 +105,14 @@ Page({
         Menu.getAllMenu()
             .then((d) => {
                 console.log('getAllMenu', d);
-                that.setData({menu: d})
+                that.setData({menu: d});
             }).catch(e => {
-            console.log(e)
+            console.error(e)
         })
     },
 
     getMenuInfo: function () {
-        if(currentMenu.id){
+        if (currentMenu.id) {
             wx.navigateTo({
                 url: '/pages/menu/info?id=' + currentMenu.id
             })
@@ -138,7 +150,7 @@ Page({
                                 duration: 2000
                             })
                         } else {
-                           // wx.showModal({title: '分享失败', content: res.data.msg})
+                            // wx.showModal({title: '分享失败', content: res.data.msg})
                         }
                     },
                     fail: function () {

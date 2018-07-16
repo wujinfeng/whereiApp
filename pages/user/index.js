@@ -62,12 +62,23 @@ Page({
                     console.log(res.data.data)
                     that.setData({shareData: res.data.data})
                 } else {
-                    wx.showModal({title: '分享失败', content: res.data.msg || '出错'})
+                    console.error(res)
+                    wx.hideLoading();
+                    wx.showToast({
+                        title: '网络繁忙，请稍后重试！',
+                        icon: 'none',
+                        duration: 2500
+                    })
                 }
             },
-            fail: function () {
+            fail: function (res) {
+                console.error(res)
                 wx.hideLoading();
-                wx.showModal({title: '提示', content: '请求失败，请重试！'})
+                wx.showToast({
+                    title: '网络繁忙，请稍后重试！',
+                    icon: 'none',
+                    duration: 2500
+                })
             },
         })
     },

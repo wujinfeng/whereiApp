@@ -14,17 +14,28 @@ Page({
      */
     onLoad: function (options) {
         let that = this;
+        wx.showLoading({
+            title: '加载中...',
+            mask: true,
+        });
         let id = options.id;
         console.log(id)
         let params = {id: id};
         Menu.getMenuInfo(params)
             .then((d) => {
                 console.log(d)
+                wx.hideLoading();
                 that.setData({
                     menuInfo: d
                 })
             }).catch(e => {
             console.error(e)
+            wx.hideLoading();
+            wx.showToast({
+                title: '网络繁忙，请稍后重试！',
+                icon: 'none',
+                duration: 2500
+            })
         })
     },
 

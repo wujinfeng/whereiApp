@@ -1,9 +1,0 @@
-<!--pages/map/index.wxml-->
-<view class="page-body">
-  <view class="page-section page-section-gap">
-    <map id="myMap" class="map" scale="14" latitude="13.324520" longitude="23.099994"></map>
-  </view>
-  <view class="btn-area">
-    <button bindtap="moveToLocation" class="page-body-button refreshBtn" type="primary">刷新</button>
-  </view>
-</view>
