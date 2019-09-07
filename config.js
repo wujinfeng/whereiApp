@@ -1,4 +1,4 @@
-const debug = true;
+const debug = false;
 const HOST = debug ? 'http://192.168.50.18:3001' : 'https://chi.xiaomaiw.top';
 let config = {
     LOGIN_URL: HOST + '/admin/user/login',

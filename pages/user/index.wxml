@@ -5,7 +5,7 @@
         <input class='input' bindinput="bindKeyInput" placeholder="好友名称"/>
         <button  class='button' open-type="share">转发给好友</button>
       </view>
-      <view class='tip-help'>随便给好友写个名称,就可以查看到好友是否打开</view>
+      <view class='tip-help'>随便给好友写个名称,就可以查看到好友是否打开和定位[仅供娱乐]</view>
     </view>
     <view class="page__hd">    
       <view class="weui-panel weui-panel_access">

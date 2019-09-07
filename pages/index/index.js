@@ -55,7 +55,7 @@ Page({
         let that = this
         wx.showLoading({
             title: '加载中...',
-            mask: true,
+            mask: false,
         });
         wx.getLocation({
             type: 'gcj02',
@@ -96,6 +96,10 @@ Page({
                             duration: 2500
                         })
                     })
+            },
+            fail: function(e){
+              wx.hideLoading();
+              console.error('myLocation', e)
             }
         })
     },

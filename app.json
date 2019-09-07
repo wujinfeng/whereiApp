@@ -4,6 +4,11 @@
     "pages/user/index",
     "pages/menu/info"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置共享给好友"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -25,11 +30,12 @@
       },
       {
         "pagePath": "pages/user/index",
-        "text": "我的",
+        "text": "定位",
         "iconPath": "/static/image/mine.png",
         "selectedIconPath": "/static/image/mineselected.png"
       }
     ]
   },
-  "debug": true
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
 }
