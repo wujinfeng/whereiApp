@@ -49,6 +49,7 @@ Page({
         //获取分享信息
         let openId = app.globalData.loginInfo.openid;
         let that = this;
+        console.log('onShow openId: ',openId)
         wx.showLoading({title: '加载中',})
         wx.request({
             url: config.GETSHARE_URL,
@@ -56,13 +57,11 @@ Page({
             dataType: 'json',
             data: {openId: openId},
             success: function (res) {
-                console.log('结果', res);
+                console.log('GETSHARE_URL：', res);
                 wx.hideLoading();
                 if (res.statusCode === 200 && res.data.code === 200) {
-                    console.log(res.data.data)
                     that.setData({shareData: res.data.data})
                 } else {
-                    console.error(res)
                     wx.hideLoading();
                     wx.showToast({
                         title: '网络繁忙，请稍后重试！',
@@ -137,7 +136,7 @@ Page({
                     dataType: 'json',
                     data: {openId: openId},
                     success: function (res) {
-                        console.log('结果', res);
+                        console.log('SHARE_URL：', res);
                         if (res.statusCode === 200 && res.data.code === 200) {
                             wx.showToast({
                                 title: '分享成功',

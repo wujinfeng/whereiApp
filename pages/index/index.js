@@ -20,8 +20,8 @@ Page({
 
     clickWhatBtn: function () {
         let that = this;
-        that.setData({myMenu: '...'})
-        wx.showLoading({title: '加载中',})
+        that.setData({ myMenu: '...' })
+        wx.showLoading({ title: '加载中', })
         let random = Math.floor(Math.random() * that.data.menu.length)
         setTimeout(function () {
             wx.hideLoading()
@@ -37,16 +37,16 @@ Page({
             that.setData({
                 myMenu: currentMenu.name
             })
-        }, 500)
+        }, 300)
     },
     onLoad: function (options) {
         let that = this
-        that.setData({fromOpenId: '', friendName: ''})
+        that.setData({ fromOpenId: '', friendName: '' })
         let share = options.share
         console.log('options.fromOpenId', options.fromOpenId)
         console.log('options.friendName', options.friendName)
         if (share) {
-            that.setData({fromOpenId: options.fromOpenId || '', friendName: options.friendName || ''})
+            that.setData({ fromOpenId: options.fromOpenId || '', friendName: options.friendName || '' })
         }
         this.getAllMenu()
         this.myLocation()
@@ -84,9 +84,8 @@ Page({
                         }
                         return user.location(params)
                     }).then((d) => {
-                    wx.hideLoading();
-                    console.error('addUserLoca', d)
-                })
+                        wx.hideLoading();
+                    })
                     .catch(e => {
                         console.error(e);
                         wx.hideLoading();
@@ -97,9 +96,9 @@ Page({
                         })
                     })
             },
-            fail: function(e){
-              wx.hideLoading();
-              console.error('myLocation', e)
+            fail: function (e) {
+                wx.hideLoading();
+                console.error('myLocation', e)
             }
         })
     },
@@ -109,10 +108,10 @@ Page({
         Menu.getAllMenu()
             .then((d) => {
                 console.log('getAllMenu', d);
-                that.setData({menu: d});
+                that.setData({ menu: d });
             }).catch(e => {
-            console.error(e)
-        })
+                console.error(e)
+            })
     },
 
     getMenuInfo: function () {
@@ -144,9 +143,9 @@ Page({
                     url: config.SHARE_URL,
                     method: 'POST',
                     dataType: 'json',
-                    data: {openId: openId},
+                    data: { openId: openId },
                     success: function (res) {
-                        console.log('结果', res);
+                        console.log('SHARE_URL', res);
                         if (res.statusCode === 200 && res.data.code === 200) {
                             wx.showToast({
                                 title: '分享成功',
