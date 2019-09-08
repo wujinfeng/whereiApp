@@ -25,14 +25,14 @@
       {
         "pagePath": "pages/index/index",
         "text": "抽取",
-        "iconPath": "/static/image/home.png",
-        "selectedIconPath": "/static/image/homeselected.png"
+        "iconPath": "/static/image/index0.png",
+        "selectedIconPath": "/static/image/index1.png"
       },
       {
         "pagePath": "pages/user/index",
         "text": "定位",
-        "iconPath": "/static/image/mine.png",
-        "selectedIconPath": "/static/image/mineselected.png"
+        "iconPath": "/static/image/my0.png",
+        "selectedIconPath": "/static/image/my1.png"
       }
     ]
   },
